@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $1,000 Test — Live Sports CPM Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cobalt: #084e8e;
+  --blue: #1d9ad6;
+  --peach: #f0503f;
+  --mustard: #f6b73d;
+  --grass: #4caf50;
+  --berry: #d02f77;
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --text: #1a1a2e;
+  --text-dim: #5f6368;
+  --text-muted: #9aa0a6;
+  --border: #e8eaed;
+  --border-light: #f1f3f4;
+  --row-hover: #f8f9fa;
+  --positive: #1e8e3e;
+  --positive-bg: #e6f4ea;
+  --baseline-bg: #f5f6fa;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* HEADER */
+.header { max-width: 1120px; margin: 0 auto; padding: 28px 24px 0; }
+.header__kicker {
+  font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--cobalt); opacity: 0.65;
+}
+.header__title {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 900;
+  font-size: clamp(26px, 5.5vw, 44px); line-height: 1.08;
+  color: var(--text); margin: 10px 0 10px; letter-spacing: -0.025em;
+}
+.header__title em { font-style: normal; color: var(--cobalt); }
+.header__deck {
+  font-size: 15px; color: var(--text-dim); max-width: 640px; line-height: 1.65;
+}
+.header__deck strong { color: var(--text); font-weight: 600; }
+.header__meta {
+  margin-top: 16px; padding: 12px 0; border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text-muted);
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.header__meta b { color: var(--text-dim); font-weight: 600; }
+
+/* SCROLL HINT */
+.scroll-hint {
+  display: none; max-width: 1120px; margin: 12px auto 0; padding: 0 24px;
+  font-size: 11px; color: var(--text-muted); text-align: right;
+}
+@media (max-width: 960px) { .scroll-hint { display: block; } }
+
+/* TABLE WRAPPER */
+.table-wrap {
+  max-width: 1120px; margin: 12px auto 0; padding: 0 24px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.table-wrap::-webkit-scrollbar { height: 5px; }
+.table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* TABLE */
+table { width: 100%; min-width: 1060px; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+
+th:first-child, td:first-child {
+  position: sticky; left: 0; z-index: 2; background: var(--surface);
+}
+th:first-child { background: var(--bg); }
+
+thead th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted);
+  padding: 10px 12px; white-space: nowrap; vertical-align: bottom;
+}
+thead th.th-right { text-align: right; }
+
+/* Section dividers */
+.section-row td {
+  padding: 20px 12px 6px; font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  border-bottom: 2px solid var(--cobalt); background: var(--bg) !important;
+}
+.section-row td:first-child { background: var(--bg) !important; }
+
+tbody td {
+  padding: 11px 12px; border-bottom: 1px solid var(--border-light);
+  vertical-align: middle; transition: background 0.1s ease;
+}
+tbody tr:hover td { background: var(--row-hover); }
+
+/* BASELINE ROWS */
+.baseline-row td { background: var(--baseline-bg) !important; }
+.baseline-row td:first-child { background: var(--baseline-bg) !important; }
+.baseline-row:hover td { background: #eef0f5 !important; }
+.baseline-row:hover td:first-child { background: #eef0f5 !important; }
+
+/* WOMEN'S ROW */
+.womens-row td { background: #fdf5f8 !important; }
+.womens-row td:first-child { background: #fdf5f8 !important; }
+.womens-row:hover td { background: #faeef3 !important; }
+.womens-row:hover td:first-child { background: #faeef3 !important; }
+
+/* LEAGUE CELL */
+.league-cell { display: flex; align-items: center; gap: 10px; min-width: 160px; }
+.league-icon {
+  width: 30px; height: 30px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.league-name { font-weight: 600; font-size: 13px; line-height: 1.2; }
+.league-market { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+/* NUMERIC */
+.num {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;
+  text-align: right; white-space: nowrap;
+}
+.num--large { font-size: 14px; font-weight: 600; color: var(--text); }
+.num--highlight { color: var(--cobalt); font-weight: 600; }
+.num--muted { color: var(--text-muted); font-weight: 400; font-size: 12px; }
+
+/* COMPLETION BAR */
+.comp-cell { min-width: 130px; }
+.comp-outer {
+  width: 100%; height: 16px; background: var(--border-light);
+  border-radius: 3px; overflow: hidden; position: relative;
+}
+.comp-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 5px;
+}
+.comp-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  font-weight: 600; color: #fff; white-space: nowrap;
+}
+.comp-label--outside {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-weight: 500; color: var(--text-dim); margin-left: 5px;
+}
+
+/* EFFECTIVENESS BADGE */
+.eff-badge {
+  display: inline-flex; align-items: center; gap: 3px; padding: 3px 8px;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+}
+.eff-badge--pos { background: var(--positive-bg); color: var(--positive); }
+.eff-badge--neutral { background: var(--baseline-bg); color: var(--text-muted); }
+
+/* NOTE CELL */
+.note-cell {
+  font-size: 12px; color: var(--text-dim); line-height: 1.45; max-width: 200px;
+}
+.note-cell strong { color: var(--text); font-weight: 600; }
+
+/* SOURCE TAG */
+.src-tag {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  letter-spacing: 0.5px; padding: 1px 5px; border-radius: 3px;
+  background: var(--border-light); color: var(--text-muted);
+  margin-left: 4px; vertical-align: middle;
+}
+
+/* CALLOUT */
+.callout { max-width: 1120px; margin: 0 auto; padding: 16px 24px; }
+.callout__box {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-left: 4px solid var(--cobalt); border-radius: 0 8px 8px 0;
+  padding: 16px 20px; max-width: 720px;
+}
+.callout__label {
+  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--cobalt); margin-bottom: 6px;
+}
+.callout__text { font-size: 14px; color: var(--text); line-height: 1.6; }
+.callout__text strong { font-weight: 700; }
+
+/* FOOTNOTE */
+.footnote { max-width: 1120px; margin: 0 auto; padding: 20px 24px 60px; }
+.footnote__text {
+  font-size: 11px; color: var(--text-muted); line-height: 1.7; max-width: 720px;
+}
+.footnote__text a { color: var(--cobalt); text-decoration: none; }
+.footnote__text a:hover { text-decoration: underline; }
+
+/* SORT */
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: var(--cobalt); }
+th[data-sort]::after { content: ' ↕'; font-size: 9px; opacity: 0.4; }
+th.sorted-asc::after { content: ' ↑'; opacity: 1; color: var(--cobalt); }
+th.sorted-desc::after { content: ' ↓'; opacity: 1; color: var(--cobalt); }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .header, .callout, .footnote { padding-left: 16px; padding-right: 16px; }
+  .table-wrap { padding: 0 16px; }
+  .scroll-hint { padding: 0 16px; }
+}
+
+/* ANIMATION */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+tbody tr { opacity: 0; animation: fadeIn 0.3s ease forwards; }
+tbody tr:nth-child(1) { animation-delay: 0.03s; }
+tbody tr:nth-child(2) { animation-delay: 0.06s; }
+tbody tr:nth-child(3) { animation-delay: 0.09s; }
+tbody tr:nth-child(4) { animation-delay: 0.12s; }
+tbody tr:nth-child(5) { animation-delay: 0.15s; }
+tbody tr:nth-child(6) { animation-delay: 0.18s; }
+tbody tr:nth-child(7) { animation-delay: 0.21s; }
+tbody tr:nth-child(8) { animation-delay: 0.24s; }
+tbody tr:nth-child(9) { animation-delay: 0.27s; }
+tbody tr:nth-child(10) { animation-delay: 0.30s; }
+tbody tr:nth-child(11) { animation-delay: 0.33s; }
+tbody tr:nth-child(12) { animation-delay: 0.36s; }
+tbody tr:nth-child(13) { animation-delay: 0.39s; }
+tbody tr:nth-child(14) { animation-delay: 0.42s; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__kicker">The Current · Interactive</div>
+  <h1 class="header__title">The <em>$1,000</em> test</h1>
+  <p class="header__deck">Live sports CPMs look expensive next to social video. But when you factor in completion rates, search lift, and audience quality, the calculus changes. The Current's analysis of publicly available industry data breaks down what a flat $1,000 spend actually delivers across every major league and platform.</p>
+  <div class="header__meta">
+    <span><b>By</b> Zac Schwartz</span>
+    <span><b>Published</b> April 2026</span>
+    <span><b>Data:</b> 2025–26 industry benchmarks</span>
+  </div>
+</header>
+
+<div class="scroll-hint">Scroll right for full table →</div>
+
+<div class="table-wrap">
+<table id="mainTable">
+  <thead>
+    <tr>
+      <th style="min-width:175px">Channel</th>
+      <th class="th-right" data-sort="cpm" style="min-width:90px">CPM range</th>
+      <th class="th-right" data-sort="impressions" style="min-width:95px">Per $1K</th>
+      <th style="min-width:145px" data-sort="completion">Completion rate</th>
+      <th style="min-width:100px" data-sort="effectiveness">Search lift (EDO)</th>
+      <th style="min-width:105px">Core demo</th>
+      <th style="min-width:85px">Gender</th>
+      <th style="min-width:120px">HHI / diversity signal</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="callout">
+  <div class="callout__box">
+    <div class="callout__label">The math</div>
+    <div class="callout__text">$1,000 on TikTok buys ~143k impressions — but at ~25% completion, only ~36k viewers see your full message. The same $1,000 on NFL CTV buys ~18k impressions at <strong>95%+ completion</strong> = ~17k completed views. Factor in <strong>66% higher search lift</strong> (EDO) and <strong>2× ad recall</strong> vs mobile video (Comcast Advertising), and the cost per engaged viewer is competitive — with dramatically higher impact per exposure.</div>
+  </div>
+</div>
+
+<footer class="footnote">
+  <p class="footnote__text">
+    <strong>Methodology.</strong> CPM ranges from Gupta Media Social CPM Tracker (Oct 2025), Streamlayer CTV Guide (Jan 2026), IAB 2025 Digital Video Ad Spend Report. Completion rates from Innovid 2024 Global Benchmarks (CTV: 95%+), SEO Design Chicago (YouTube: 20–40%), industry averages (social: 15–30%). Ad effectiveness from EDO 2024–25 studies. Demographics from S&amp;P Global (NFL age skew), Nielsen Tops of Sports 2025 (NBA diversity, MLB), The Shelf/Nielsen Scarborough (NBA avg age, HHI), EMI Research (income tiers by league), CivicScience/One Elevate (F1 US demos), F1 2025 Global Fan Survey (gender/age), Quantumrun (NFL gender). Women's sports data from EDO/SponsorUnited/WPP. Impressions per $1K at CPM midpoint; "completed views" = impressions × completion midpoint.
+    <br><br>
+    Built by <a href="https://thecurrent.com" target="_blank">The Current</a> · <a href="https://thetradedesk.com" target="_blank">The Trade Desk</a>
+  </p>
+</footer>
+
+<script>
+const DATA = [
+  // --- SOCIAL BASELINES ---
+  { section: 'social' },
+  {
+    id: 'tiktok', league: 'TikTok', emoji: '📱', market: 'In-feed / TopView',
+    color: '#9aa0a6', cpmLow: 5, cpmHigh: 9,
+    completionLow: 15, completionHigh: 30, completionSource: 'Industry avg',
+    effectivenessLabel: 'Baseline', effectivenessValue: 0,
+    coreDemo: '18–34 (60%+)', gender: '54% F / 46% M', hhiSignal: 'Broad income; skews younger/lower HHI',
+    isBaseline: true,
+  },
+  {
+    id: 'instagram', league: 'Instagram', emoji: '📸', market: 'Reels / Stories / Feed',
+    color: '#9aa0a6', cpmLow: 7, cpmHigh: 15,
+    completionLow: 20, completionHigh: 35, completionSource: 'Industry avg',
+    effectivenessLabel: 'Baseline', effectivenessValue: 0,
+    coreDemo: '18–44 (core)', gender: '51% F / 49% M', hhiSignal: 'Broad; lifestyle/fashion skew',
+    isBaseline: true,
+  },
+  {
+    id: 'youtube', league: 'YouTube', emoji: '▶️', market: 'Pre-roll / Mid-roll / CTV',
+    color: '#9aa0a6', cpmLow: 4, cpmHigh: 8,
+    completionLow: 20, completionHigh: 40, completionSource: 'SEO Design Chicago',
+    effectivenessLabel: 'Baseline', effectivenessValue: 0,
+    coreDemo: '18–49 (broad)', gender: '54% M / 46% F', hhiSignal: '84% US adults use platform; broadest reach',
+    isBaseline: true,
+  },
+  // --- LIVE SPORTS ---
+  { section: 'sports' },
+  {
+    id: 'nfl', league: 'NFL', emoji: '🏈', market: 'US · CTV + linear',
+    color: '#084e8e', cpmLow: 40, cpmHigh: 70,
+    completionLow: 94, completionHigh: 98, completionSource: 'Innovid',
+    effectivenessLabel: '+66%', effectivenessValue: 66,
+    coreDemo: '35–54 (41% avid); 47% are 55+', gender: '53% M / 47% F', hhiSignal: 'Fandom rises w/ income: 29% at $100k+ vs 18% <$20k',
+  },
+  {
+    id: 'nba', league: 'NBA', emoji: '🏀', market: 'US · CTV + linear',
+    color: '#1d9ad6', cpmLow: 30, cpmHigh: 65,
+    completionLow: 92, completionHigh: 97, completionSource: 'Innovid/CTV avg',
+    effectivenessLabel: '+24%', effectivenessValue: 24,
+    coreDemo: 'Avg viewer 37 yrs; youngest Big 4', gender: '62% M / 38% F', hhiSignal: 'Avg HHI $96k. 31.7% Black, 6.9% Asian (postseason)',
+  },
+  {
+    id: 'epl', league: 'Premier League', emoji: '⚽', market: 'US via Peacock/USA',
+    color: '#3d1d5c', cpmLow: 30, cpmHigh: 65,
+    completionLow: 92, completionHigh: 97, completionSource: 'Innovid/CTV avg',
+    effectivenessLabel: '+24%', effectivenessValue: 24,
+    coreDemo: '34.9% are 50+; new fans skew younger', gender: '~65% M / 35% F', hhiSignal: 'Fandom doubles at $100k+ HHI (EMI). Diverse/affluent US',
+  },
+  {
+    id: 'ipl', league: 'IPL (cricket)', emoji: '🏏', market: 'US via Willow/FanCode',
+    color: '#f0503f', cpmLow: 15, cpmHigh: 40,
+    completionLow: 90, completionHigh: 96, completionSource: 'Est. CTV range',
+    effectivenessLabel: '+30%', effectivenessValue: 30,
+    coreDemo: '25–44 (South Asian diaspora core)', gender: '~70% M / 30% F', hhiSignal: 'US diaspora: high HHI ($120k+ est). Niche, high-intent',
+  },
+  {
+    id: 'f1', league: 'Formula 1', emoji: '🏎️', market: 'US via ESPN/Apple',
+    color: '#e10600', cpmLow: 35, cpmHigh: 65,
+    completionLow: 93, completionHigh: 97, completionSource: 'Est. CTV range',
+    effectivenessLabel: '+35%', effectivenessValue: 35,
+    coreDemo: '25–44 core; 42% under 35 globally', gender: '60% M / 40% F', hhiSignal: 'HHI $75k+ (Nielsen). Affluent/craft-oriented. 18-49 up 14% YoY',
+  },
+  {
+    id: 'tennis', league: 'Grand Slams', emoji: '🎾', market: 'US via ESPN/TNT',
+    color: '#4caf50', cpmLow: 30, cpmHigh: 55,
+    completionLow: 92, completionHigh: 96, completionSource: 'Est. CTV range',
+    effectivenessLabel: '+22%', effectivenessValue: 22,
+    coreDemo: '35–64 (peak events); premium skew', gender: '~55% M / 45% F', hhiSignal: 'High-HHI concentration. Luxury/travel advertiser fit',
+  },
+  {
+    id: 'laliga', league: 'La Liga', emoji: '⚽', market: 'US via ESPN+',
+    color: '#f6b73d', cpmLow: 20, cpmHigh: 45,
+    completionLow: 91, completionHigh: 96, completionSource: 'Est. CTV range',
+    effectivenessLabel: '+20%', effectivenessValue: 20,
+    coreDemo: '18–44; US Hispanic core', gender: '~65% M / 35% F', hhiSignal: 'Soccer fandom jumps 2–3× at top income tiers (EMI)',
+  },
+  {
+    id: 'womens', league: "Women's sports", emoji: '🏆', market: 'US · WNBA/NWSL/WTA',
+    color: '#d02f77', cpmLow: 20, cpmHigh: 50,
+    completionLow: 92, completionHigh: 97, completionSource: 'Est. CTV range',
+    effectivenessLabel: '+20%', effectivenessValue: 20,
+    coreDemo: '18–44; fastest-growing segment', gender: '~50% F / 50% M', hhiSignal: '+69% spend YoY, +79% impressions. +20% ad effectiveness (EDO)',
+    isWomens: true,
+  },
+];
+
+function calcImpressions(low, high) {
+  const mid = (low + high) / 2;
+  return Math.round(1000 / mid * 1000);
+}
+function calcCompleted(low, high, compLow, compHigh) {
+  const imps = calcImpressions(low, high);
+  const compMid = (compLow + compHigh) / 2 / 100;
+  return Math.round(imps * compMid);
+}
+function fmt(n) {
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  return n.toLocaleString();
+}
+
+function renderTable(rows) {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  const maxComp = 98;
+
+  rows.forEach(d => {
+    if (d.section) {
+      const tr = document.createElement('tr');
+      tr.className = 'section-row';
+      const label = d.section === 'social' ? 'Social video baselines' : 'Live sports · CTV + linear';
+      tr.innerHTML = `<td colspan="7">${label}</td>`;
+      tbody.appendChild(tr);
+      return;
+    }
+
+    const imps = calcImpressions(d.cpmLow, d.cpmHigh);
+    const completed = calcCompleted(d.cpmLow, d.cpmHigh, d.completionLow, d.completionHigh);
+    const compMid = Math.round((d.completionLow + d.completionHigh) / 2);
+    const compW = Math.round((compMid / maxComp) * 100);
+    const barColor = d.isBaseline ? '#bcc1c7' : d.color;
+
+    const tr = document.createElement('tr');
+    if (d.isBaseline) tr.className = 'baseline-row';
+    if (d.isWomens) tr.className = 'womens-row';
+
+    tr.innerHTML = `
+      <td>
+        <div class="league-cell">
+          <div class="league-icon" style="background:${d.isBaseline ? '#eef0f4' : d.color + '15'}">${d.emoji}</div>
+          <div>
+            <div class="league-name">${d.league}</div>
+            <div class="league-market">${d.market}</div>
+          </div>
+        </div>
+      </td>
+      <td class="num num--large">$${d.cpmLow}–${d.cpmHigh}</td>
+      <td class="num">
+        <span class="${d.isBaseline ? 'num--muted' : 'num--highlight'}">${fmt(imps)}</span>
+        <br><span style="font-size:10px;color:var(--text-muted)">${fmt(completed)} completed</span>
+      </td>
+      <td class="comp-cell">
+        <div style="display:flex;align-items:center;gap:5px">
+          <div class="comp-outer" style="flex:1">
+            <div class="comp-fill" style="width:${compW}%;background:${barColor}">
+              ${compW > 22 ? `<span class="comp-label">${d.completionLow}–${d.completionHigh}%</span>` : ''}
+            </div>
+          </div>
+          ${compW <= 22 ? `<span class="comp-label--outside">${d.completionLow}–${d.completionHigh}%</span>` : ''}
+        </div>
+        <span style="font-size:9px;color:var(--text-muted)">${d.completionSource}</span>
+      </td>
+      <td>
+        ${d.isBaseline
+          ? '<span class="eff-badge eff-badge--neutral">—</span>'
+          : `<span class="eff-badge eff-badge--pos">${d.effectivenessLabel}</span>`
+        }
+      </td>
+      <td class="note-cell">${d.coreDemo}</td>
+      <td class="note-cell">${d.gender}</td>
+      <td class="note-cell">${d.hhiSignal}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// SORTING
+let sortState = { col: null, dir: null };
+document.querySelectorAll('th[data-sort]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.sort;
+    let dir = 'desc';
+    if (sortState.col === col && sortState.dir === 'desc') dir = 'asc';
+    else if (sortState.col === col && sortState.dir === 'asc') dir = null;
+    sortState = { col: dir ? col : null, dir };
+
+    document.querySelectorAll('th[data-sort]').forEach(t => t.classList.remove('sorted-asc', 'sorted-desc'));
+    if (dir) th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+    if (!dir) { renderTable(DATA); return; }
+
+    // Separate sections and data rows
+    const social = DATA.filter(d => d.section === 'social' || d.isBaseline);
+    const sportsHeader = DATA.filter(d => d.section === 'sports');
+    const sports = DATA.filter(d => !d.section && !d.isBaseline);
+
+    const sortFn = (a, b) => {
+      let va, vb;
+      switch (col) {
+        case 'cpm': va = (a.cpmLow+a.cpmHigh)/2; vb = (b.cpmLow+b.cpmHigh)/2; break;
+        case 'impressions': va = calcImpressions(a.cpmLow,a.cpmHigh); vb = calcImpressions(b.cpmLow,b.cpmHigh); break;
+        case 'completion': va = (a.completionLow+a.completionHigh)/2; vb = (b.completionLow+b.completionHigh)/2; break;
+        case 'effectiveness': va = a.effectivenessValue; vb = b.effectivenessValue; break;
+      }
+      return dir === 'asc' ? va - vb : vb - va;
+    };
+
+    const socialRows = social.filter(d => !d.section);
+    socialRows.sort(sortFn);
+    const sportsRows = sports.filter(d => !d.section);
+    sportsRows.sort(sortFn);
+
+    renderTable([
+      { section: 'social' }, ...socialRows,
+      { section: 'sports' }, ...sportsRows
+    ]);
+  });
+});
+
+// INIT
+renderTable(DATA);
+</script>
+
+</body>
+</html>
